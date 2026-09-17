@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SkillVault | Knowledge. Tools. Professional Solutions.</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f5f7fa;
+    color:#172033;
+    line-height:1.6;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+header{
+    background:#0b1f3a;
+    color:white;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 3px 15px rgba(0,0,0,.15);
+}
+
+.navbar{
+    min-height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logo-box{
+    width:42px;
+    height:42px;
+    background:#d9a441;
+    color:#0b1f3a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:white;
+    font-weight:600;
+    font-size:14px;
+}
+
+.nav-links a:hover{
+    color:#d9a441;
+}
+
+.products-menu{
+    position:relative;
+}
+
+.products-button{
+    background:none;
+    border:none;
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.products-dropdown{
+    display:none;
+    position:absolute;
+    top:35px;
+    left:0;
+    background:white;
+    width:250px;
+    border-radius:8px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    overflow:hidden;
+}
+
+.products-dropdown.show{
+    display:block;
+}
+
+.products-dropdown button{
+    width:100%;
+    border:none;
+    background:white;
+    padding:12px 16px;
+    text-align:left;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.products-dropdown button:hover{
+    background:#f0f2f5;
+    color:#0b1f3a;
+}
+
+.cart-button{
+    background:#d9a441;
+    color:#0b1f3a;
+    border:none;
+    padding:10px 16px;
+    border-radius:7px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.hero{
+    background:#0b1f3a;
+    color:white;
+    padding:100px 0;
+}
+
+.hero-content{
+    max-width:750px;
+}
+
+.hero h1{
+    font-size:52px;
+    line-height:1.15;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#d9a441;
+}
+
+.hero p{
+    font-size:20px;
+    margin-bottom:30px;
+    color:#e2e7ef;
+}
+
+.btn{
+    display:inline-block;
+    padding:13px 22px;
+    border-radius:7px;
+    border:none;
+    cursor:pointer;
+    font-weight:bold;
+    margin:5px;
+}
+
+.primary{
+    background:#d9a441;
+    color:#0b1f3a;
+}
+
+.secondary{
+    background:white;
+    color:#0b1f3a;
+}
+
+section{
+    padding:75px 0;
+}
+
+.light{
+    background:white;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title h2{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#667085;
+}
+
+.product-controls{
+    display:flex;
+    gap:8px;
+    margin-bottom:30px;
+    overflow-x:auto;
+    white-space:nowrap;
+    padding-bottom:10px;
+}
+
+.product-controls::-webkit-scrollbar{
+    height:5px;
+}
+
+.product-controls::-webkit-scrollbar-thumb{
+    background:#d0d5dd;
+    border-radius:5px;
+}
+
+.filter-btn{
+    border:1px solid #d0d5dd;
+    background:white;
+    padding:8px 14px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:600;
+    font-size:12px;
+    flex-shrink:0;
+}
+
+.filter-btn.active,
+.filter-btn:hover{
+    background:#0b1f3a;
+    color:white;
+}
+
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:25px;
+}
+
+.product-card{
+    background:white;
+    border-radius:12px;
+    padding:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    display:flex;
+    flex-direction:column;
+}
+
+/* Featured styling for independent independent powerhouse products */
+.product-card.featured-card{
+    border:2px solid #d9a441;
+    position:relative;
+}
+
+.featured-badge{
+    position:absolute;
+    top:-12px;
+    right:20px;
+    background:#d9a441;
+    color:#0b1f3a;
+    font-size:11px;
+    font-weight:bold;
+    padding:3px 10px;
+    border-radius:20px;
+}
+
+.product-card.hidden{
+    display:none;
+}
+
+.product-icon{
+    font-size:38px;
+    margin-bottom:12px;
+}
+
+.product-card h3{
+    font-size:20px;
+    margin-bottom:8px;
+}
+
+.product-description{
+    color:#667085;
+    margin-bottom:15px;
+    flex-grow:1;
+}
+
+.price{
+    font-size:18px;
+    font-weight:bold;
+    color:#0b1f3a;
+    margin-bottom:15px;
+}
+
+.price small{
+    font-size:12px;
+    font-weight:normal;
+    color:#667085;
+}
+
+.product-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.product-actions button{
+    flex:1;
+    min-width:110px;
+}
+
+.details-btn{
+    background:#eef1f5;
+    color:#0b1f3a;
+}
+
+.add-btn{
+    background:#d9a441;
+    color:#0b1f3a;
+}
+
+.services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:22px;
+}
+
+.service-card{
+    background:#f8f9fb;
+    padding:28px;
+    border-radius:10px;
+}
+
+.service-card h3{
+    margin-bottom:10px;
+}
+
+.about-box{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.why-card{
+    padding:25px;
+    background:#f8f9fb;
+    border-radius:10px;
+}
+
+.request-box{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:7px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #d0d5dd;
+    border-radius:7px;
+    font-size:15px;
+}
+
+.form-group textarea{
+    min-height:130px;
+    resize:vertical;
+}
+
+.contact-box{
+    max-width:700px;
+    margin:auto;
+    background:#f8f9fb;
+    padding:30px;
+    border-radius:12px;
+    text-align:center;
+}
+
+.contact-box p{
+    margin-bottom:12px;
+}
+
+.contact-box a{
+    color:#0b1f3a;
+    font-weight:600;
+}
+
+footer{
+    background:#08172c;
+    color:white;
+    padding:30px 0;
+    text-align:center;
+}
+
+footer p{
+    color:#c7cfda;
+}
+
+/* MODALS */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:2000;
+    padding:30px 15px;
+    overflow-y:auto;
+}
+
+.modal.show{
+    display:block;
+}
+
+.modal-content{
+    background:white;
+    max-width:650px;
+    margin:40px auto;
+    border-radius:12px;
+    padding:30px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:20px;
+    top:15px;
+    font-size:28px;
+    border:none;
+    background:none;
+    cursor:pointer;
+}
+
+.modal-content h2{
+    margin-bottom:12px;
+}
+
+.modal-content ul{
+    margin:15px 0 20px 20px;
+}
+
+.quantity-box{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:20px 0;
+}
+
+.quantity-box button{
+    width:35px;
+    height:35px;
+    border:1px solid #ccc;
+    background:#f5f5f5;
+    cursor:pointer;
+    font-size:18px;
+    border-radius:5px;
+}
+
+.quantity-number{
+    min-width:30px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.modal-total{
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+/* CART */
+
+.cart-modal .modal-content{
+    max-width:700px;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    border-bottom:1px solid #ddd;
+    padding:15px 0;
+}
+
+.cart-item-info{
+    flex:1;
+}
+
+.cart-item-info strong{
+    display:block;
+}
+
+.cart-item-controls{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.cart-item-controls button{
+    border:1px solid #ccc;
+    background:#f5f5f5;
+    width:30px;
+    height:30px;
+    cursor:pointer;
+}
+
+.cart-total{
+    text-align:right;
+    font-size:22px;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+.negotiative-notice{
+    font-size:13px;
+    color:#667085;
+    text-align:right;
+    margin-top:5px;
+    font-style:italic;
+}
+
+.empty-cart{
+    text-align:center;
+    padding:30px;
+    color:#667085;
+}
+
+.mobile-menu{
+    display:none;
+}
+
+@media(max-width:800px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .mobile-menu{
+        display:block;
+        background:none;
+        border:none;
+        color:white;
+        font-size:25px;
+        cursor:pointer;
+    }
+
+    .navbar{
+        flex-wrap:wrap;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .products-dropdown{
+        position:fixed;
+        top:75px;
+        left:5%;
+        width:90%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+<div class="container navbar">
+<a href="#home" class="logo">
+<span class="logo-box">SV</span>
+<span>SKILLVAULT</span>
+</a>
+
+<button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
+<li class="products-menu">
+<button class="products-button" onclick="toggleProductsMenu()">Products ▾</button>
+<div class="products-dropdown" id="productsDropdown">
+<button onclick="filterProducts('all')">All Products</button>
+<button onclick="filterProducts('turnitin')">📄 Turnitin Check</button>
+<button onclick="filterProducts('stealth')">🤖 Stealth Writer Access</button>
+<button onclick="filterProducts('books')">📚 Books & Ebooks</button>
+<button onclick="filterProducts('articles')">📰 Articles & Content</button>
+<button onclick="filterProducts('digital')">📦 Other Digital Products</button>
+<button onclick="filterProducts('ai')">⚡ AI & Digital Skills</button>
+<button onclick="filterProducts('research')">✍️ Research & Writing</button>
+<button onclick="filterProducts('finance')">💰 Finance & Accounting</button>
+<button onclick="filterProducts('business')">💼 Business & Company Analysis</button>
+<button onclick="filterProducts('tax')">🧾 Tax & Compliance</button>
+<button onclick="filterProducts('risk')">🛡️ Risk and Compliance</button>
+<button onclick="filterProducts('gambling')">🎯 Gambling Addiction Solution</button>
+</div>
+</li>
+<li><a href="#services">Services</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<button class="cart-button" onclick="openCart()">
+🛒 Cart (<span id="cartCount">0</span>)
+</button>
+</div>
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+<div class="container">
+<div class="hero-content">
+<h1>Knowledge. Tools. <span>Professional Solutions.</span></h1>
+<p>SkillVault provides practical digital products, professional resources and solutions designed to help individuals, students, entrepreneurs and businesses.</p>
+<a href="#products" class="btn primary">Explore Products</a>
+<a href="#request" class="btn secondary">Request a Product</a>
+</div>
+</div>
+</section>
+
+<!-- PRODUCTS -->
+
+<section id="products">
+<div class="container">
+<div class="section-title">
+<h2>SkillVault Products</h2>
+<p>Select a category or browse all available products. All prices are negotiable.</p>
+</div>
+
+<div class="product-controls">
+<button class="filter-btn active" onclick="filterProducts('all',this)">All</button>
+<button class="filter-btn" onclick="filterProducts('turnitin',this)">Turnitin Check</button>
+<button class="filter-btn" onclick="filterProducts('stealth',this)">Stealth Writer</button>
+<button class="filter-btn" onclick="filterProducts('books',this)">Books & Ebooks</button>
+<button class="filter-btn" onclick="filterProducts('articles',this)">Articles & Content</button>
+<button class="filter-btn" onclick="filterProducts('digital',this)">Digital Products</button>
+<button class="filter-btn" onclick="filterProducts('ai',this)">AI & Digital Skills</button>
+<button class="filter-btn" onclick="filterProducts('research',this)">Research & Writing</button>
+<button class="filter-btn" onclick="filterProducts('finance',this)">Finance & Accounting</button>
+<button class="filter-btn" onclick="filterProducts('business',this)">Business & Company Analysis</button>
+<button class="filter-btn" onclick="filterProducts('tax',this)">Tax & Compliance</button>
+<button class="filter-btn" onclick="filterProducts('risk',this)">Risk and Compliance</button>
+<button class="filter-btn" onclick="filterProducts('gambling',this)">Gambling Addiction Solution</button>
+</div>
+
+<div class="products-grid">
+
+<!-- INDEPENDENT FEATURED PRODUCT 1: TURNITIN CHECK -->
+<div class="product-card featured-card" data-category="turnitin">
+<div class="featured-badge">Featured Standalone</div>
+<div class="product-icon">📄</div>
+<h3>Turnitin Check</h3>
+<p class="product-description">Plagiarism/similarity and AI-writing reports for submitted documents.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 120)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Turnitin Check','turnitin',120,'Turnitin plagiarism/similarity and AI-writing reports.','Each slot includes a similarity report and an AI-writing report.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Turnitin Check',120)">Add Slot</button>
+</div>
+</div>
+
+<!-- INDEPENDENT FEATURED PRODUCT 2: STEALTH WRITER (DAILY) -->
+<div class="product-card featured-card" data-category="stealth">
+<div class="featured-badge">Featured Standalone</div>
+<div class="product-icon">🤖</div>
+<h3>Stealth Writer (Daily)</h3>
+<p class="product-description">Advanced AI bypass and content rewriting suite access on a daily basis.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 150 / day)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Stealth Writer (Daily)','stealth',150,'Stealth Writer access for 1 day.','Stealth generation models, anti-detection output, flexible daily usage.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Stealth Writer (Daily)',150)">Add to Cart</button>
+</div>
+</div>
+
+<!-- INDEPENDENT FEATURED PRODUCT 3: STEALTH WRITER (MONTHLY) -->
+<div class="product-card featured-card" data-category="stealth">
+<div class="featured-badge">Featured Standalone</div>
+<div class="product-icon">🚀</div>
+<h3>Stealth Writer (Monthly)</h3>
+<p class="product-description">Advanced AI bypass and content rewriting suite access on a monthly plan.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 1,200 / month)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Stealth Writer (Monthly)','stealth',1200,'Stealth Writer full monthly access.','Full month access, priority generations, anti-detection output, budget-friendly package.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Stealth Writer (Monthly)',1200)">Add to Cart</button>
+</div>
+</div>
+
+<!-- INDEPENDENT FEATURED PRODUCT 4: BOOKS & EBOOKS -->
+<div class="product-card featured-card" data-category="books">
+<div class="featured-badge">Featured Standalone</div>
+<div class="product-icon">📚</div>
+<h3>Books & Ebooks</h3>
+<p class="product-description">Digital books and practical guides across selected subjects.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 100 / book)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Books & Ebooks','books',100,'Digital books and ebooks priced per book.','Educational content, finance manuals, guides, resource compilation.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Books & Ebooks',100)">Add to Cart</button>
+</div>
+</div>
+
+<!-- INDEPENDENT FEATURED PRODUCT 5: ARTICLES & CONTENT -->
+<div class="product-card featured-card" data-category="articles">
+<div class="featured-badge">Featured Standalone</div>
+<div class="product-icon">📰</div>
+<h3>Articles & Content</h3>
+<p class="product-description">High quality pre-written or customized informational articles.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 60)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Articles & Content','articles',60,'Articles and informational pieces.','Engaging written text, SEO-friendly layout, clear insights.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Articles & Content',60)">Add to Cart</button>
+</div>
+</div>
+
+<!-- OTHER DIGITAL PRODUCTS -->
+<div class="product-card" data-category="digital">
+<div class="product-icon">👤</div>
+<h3>Humanising Services</h3>
+<p class="product-description">Refining AI-generated content to sound natural and human-written.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 40 / page)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Humanising Services','digital',40,'Humanising services for content per page.','Organic flow, bypass AI detectors, natural phrasing, page-by-page review.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Humanising Services',40)">Add to Cart</button>
+</div>
+</div>
+
+<!-- AI & DIGITAL SKILLS -->
+<div class="product-card" data-category="ai">
+<div class="product-icon">✍️</div>
+<h3>Grammarly Access</h3>
+<p class="product-description">Premium writing assistant support subscription slot.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 150 / month)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Grammarly Access','ai',150,'Grammarly subscription assistance per month.','Advanced grammar checks, clarity enhancements, tone adjustments, vocabulary tools.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Grammarly Access',150)">Add to Cart</button>
+</div>
+</div>
+
+<!-- RESEARCH & WRITING -->
+<div class="product-card" data-category="research">
+<div class="product-icon">✍️</div>
+<h3>Research Report Template</h3>
+<p class="product-description">Professional structure for preparing research reports.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 700)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Research Report Template','research',700,'Professional research report template.','Research structure, sections, analysis guidance and formatting.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Research Report Template',700)">Add to Cart</button>
+</div>
+</div>
+
+<div class="product-card" data-category="research">
+<div class="product-icon">🔎</div>
+<h3>Market Research Template</h3>
+<p class="product-description">Template for conducting structured market research.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 900)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Market Research Template','research',900,'Market research template.','Market analysis, competitor analysis, customer research and reporting.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Market Research Template',900)">Add to Cart</button>
+</div>
+</div>
+
+<!-- FINANCE & ACCOUNTING -->
+<div class="product-card" data-category="finance">
+<div class="product-icon">💰</div>
+<h3>SME Budget Planner</h3>
+<p class="product-description">Practical budgeting template designed for small businesses.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 750)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('SME Budget Planner','finance',750,'Practical budgeting template for small businesses.','Monthly budgeting, expense tracking, income tracking and financial planning.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('SME Budget Planner',750)">Add to Cart</button>
+</div>
+</div>
+
+<div class="product-card" data-category="finance">
+<div class="product-icon">📊</div>
+<h3>Financial Projection Model</h3>
+<p class="product-description">Financial projection model for business planning and forecasting.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 1,500)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Financial Projection Model','finance',1500,'Financial projection model for business planning.','Revenue projections, expense forecasts, profit projections and financial planning.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Financial Projection Model',1500)">Add to Cart</button>
+</div>
+</div>
+
+<!-- BUSINESS AND COMPANY ANALYSIS -->
+<div class="product-card" data-category="business">
+<div class="product-icon">💼</div>
+<h3>Business Plan Template</h3>
+<p class="product-description">Structured business plan template for entrepreneurs.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 1,000)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Business Plan Template','business',1000,'Business planning template.','Business model, market analysis, marketing plan, operations and financial sections.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Business Plan Template',1000)">Add to Cart</button>
+</div>
+</div>
+
+<div class="product-card" data-category="business">
+<div class="product-icon">📈</div>
+<h3>Competitor & Company Analysis Tool</h3>
+<p class="product-description">Framework to evaluate rival businesses, market share, and strengths.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 1,200)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Competitor & Company Analysis Tool','business',1200,'Company analysis framework.','SWOT framework, competitor matrices, strategic positioning tools.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Competitor & Company Analysis Tool',1200)">Add to Cart</button>
+</div>
+</div>
+
+<!-- TAX & COMPLIANCE -->
+<div class="product-card" data-category="tax">
+<div class="product-icon">🧾</div>
+<h3>KRA Tax Compliance Guide</h3>
+<p class="product-description">Practical tax compliance guide for individuals and businesses.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 800)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('KRA Tax Compliance Guide','tax',800,'Practical tax compliance guide.','Tax compliance information, checklists and record-keeping guidance.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('KRA Tax Compliance Guide',800)">Add to Cart</button>
+</div>
+</div>
+
+<div class="product-card" data-category="tax">
+<div class="product-icon">📋</div>
+<h3>Tax Record-Keeping Template</h3>
+<p class="product-description">Organize business tax records and supporting documents.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 700)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Tax Record-Keeping Template','tax',700,'Tax record organization template.','Organized tax records, expense records and supporting documentation.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Tax Record-Keeping Template',700)">Add to Cart</button>
+</div>
+</div>
+
+<!-- RISK AND COMPLIANCE -->
+<div class="product-card" data-category="risk">
+<div class="product-icon">🛡️</div>
+<h3>Compliance Checklist Pack</h3>
+<p class="product-description">Practical compliance checklists for organizations.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 1,000)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Compliance Checklist Pack','risk',1000,'Compliance checklist resources.','Compliance monitoring, controls and review checklists.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Compliance Checklist Pack',1000)">Add to Cart</button>
+</div>
+</div>
+
+<div class="product-card" data-category="risk">
+<div class="product-icon">🔐</div>
+<h3>AML & KYC Resource Pack</h3>
+<p class="product-description">Resources for understanding AML and KYC processes.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 1,200)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('AML & KYC Resource Pack','risk',1200,'AML and KYC resource pack.','AML/KYC checklists, risk considerations and compliance resources.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('AML & KYC Resource Pack',1200)">Add to Cart</button>
+</div>
+</div>
+
+<!-- GAMBLING ADDICTION SOLUTION -->
+<div class="product-card" data-category="gambling">
+<div class="product-icon">🎯</div>
+<h3>Gambling Recovery Package & Roadmap</h3>
+<p class="product-description">A step-by-step psychological and practical roadmap to break the cycle of gambling addiction.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 1+)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Gambling Recovery Package & Roadmap','gambling',1,'Comprehensive recovery package for overcoming gambling addiction.','Understanding triggers, psychological mindset shifts, behavioral coping strategies, daily accountability tools.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Gambling Recovery Package & Roadmap',1)">Add to Cart</button>
+</div>
+</div>
+
+<div class="product-card" data-category="gambling">
+<div class="product-icon">💳</div>
+<h3>Post-Gambling Financial Reset Planner</h3>
+<p class="product-description">A structured template to assess financial damage, manage debt, and rebuild your savings after addiction.</p>
+<div class="price">Price Negotiable <small>(Base: KSh 900)</small></div>
+<div class="product-actions">
+<button class="btn details-btn" onclick="openProduct('Post-Gambling Financial Reset Planner','gambling',900,'Financial recovery planner for rebuilding finances after gambling losses.','Debt restructuring tracker, emergency savings builder, spending restriction framework, recovery budget planner.')">View Details</button>
+<button class="btn add-btn" onclick="addToCart('Post-Gambling Financial Reset Planner',900)">Add to Cart</button>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PRODUCT REQUEST -->
+
+<section class="light" id="request">
+<div class="container">
+<div class="section-title">
+<h2>Request a Product</h2>
+<p>Can't find what you're looking for? Tell us what you need.</p>
+</div>
+<div class="request-box">
+<form id="productRequestForm" onsubmit="submitProductRequest(event)">
+<div class="form-group"><label>Name</label><input type="text" id="requestName" required></div>
+<div class="form-group"><label>Email</label><input type="email" id="requestEmail" required></div>
+<div class="form-group"><label>WhatsApp / Phone</label><input type="text" id="requestPhone"></div>
+<div class="form-group"><label>Product Category</label>
+<select id="requestCategory">
+<option>Turnitin Check</option><option>Stealth Writer</option><option>Books & Ebooks</option><option>Articles & Content</option><option>Digital Products</option><option>AI & Digital Skills</option><option>Research & Writing</option><option>Finance & Accounting</option><option>Business and company analysis</option><option>Tax & compliance</option><option>Risk and compliance</option><option>Gambling addiction solution</option><option>Other</option>
+</select>
+</div>
+<div class="form-group"><label>Product Requested</label><input type="text" id="requestedProduct" required></div>
+<div class="form-group"><label>Preferred Format</label>
+<select id="format">
+<option>PDF</option><option>Word</option><option>Excel</option><option>PowerPoint</option><option>Google Sheets</option><option>Digital / Online Tool</option><option>Not Sure</option>
+</select>
+</div>
+<div class="form-group"><label>Approximate Budget</label><input type="text" id="budget"></div>
+<div class="form-group"><label>Tell us what you need</label><textarea id="requestDetails"></textarea></div>
+<button type="submit" class="btn primary">Submit Product Request</button>
+</form>
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+
+<section id="services">
+<div class="container">
+<div class="section-title"><h2>Professional Services</h2><p>Professional solutions tailored to your needs.</p></div>
+<div class="services">
+<div class="service-card"><h3>Gambling Addiction Recovery</h3><p>Practical recovery strategies, behavioral guidance, and financial restructuring resources.</p></div>
+<div class="service-card"><h3>Risk and Compliance</h3><p>Risk assessment, compliance frameworks, AML/KYC resources and advisory support.</p></div>
+<div class="service-card"><h3>Tax & Compliance</h3><p>Tax compliance guidance, record organization and support for individuals and businesses.</p></div>
+<div class="service-card"><h3>Research & Writing</h3><p>Research support, reports, market research, articles, editing and proofreading.</p></div>
+<div class="service-card"><h3>Business and Company Analysis</h3><p>Business plans, company research, financial models and strategic insights.</p></div>
+<div class="service-card"><h3>AI & Digital Skills</h3><p>AI tools, writing suites, automation, digital skills and practical learning resources.</p></div>
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+
+<section class="light" id="about">
+<div class="container">
+<div class="section-title"><h2>About SkillVault</h2></div>
+<div class="about-box">
+<p>SkillVault is a digital marketplace providing practical knowledge, professional tools and solutions for individuals, entrepreneurs, students and businesses.</p><br>
+<p>Our goal is to make useful digital resources and professional support easier to access in one place.</p>
+</div>
+</div>
+</section>
+
+<!-- WHY SKILLVAULT -->
+
+<section>
+<div class="container">
+<div class="section-title"><h2>Why SkillVault?</h2></div>
+<div class="why-grid">
+<div class="why-card"><h3>Practical Resources</h3><p>Tools and resources designed for real-world use.</p></div>
+<div class="why-card"><h3>Professional Solutions</h3><p>Access services and resources across multiple professional areas.</p></div>
+<div class="why-card"><h3>Convenient</h3><p>Find digital products and services in one marketplace.</p></div>
+<div class="why-card"><h3>Growing Marketplace</h3><p>New products and professional resources can be added as SkillVault grows.</p></div>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+
+<section class="light" id="contact">
+<div class="container">
+<div class="section-title"><h2>Contact SkillVault</h2><p>Have a question or need a professional service?</p></div>
+<div class="contact-box">
+<p><strong>Email:</strong> <a href="mailto:onlinetools920@gmail.com">onlinetools920@gmail.com</a></p>
+<p><strong>WhatsApp / Phone:</strong> <a href="https://wa.me/254112588425" target="_blank">+254 112 588 425</a></p>
+<p><strong>Location:</strong> Kenya</p><br>
+<a href="mailto:onlinetools920@gmail.com" class="btn primary">Email Us</a>
+<a href="https://wa.me/254112588425" target="_blank" class="btn primary">WhatsApp Us</a>
+</div>
+</div>
+</section>
+
+<!-- PRODUCT DETAILS MODAL -->
+
+<div class="modal" id="productModal">
+<div class="modal-content">
+<button class="close" onclick="closeProduct()">&times;</button>
+<h2 id="modalProductName"></h2>
+<p id="modalDescription"></p>
+<h3>What's included</h3>
+<ul id="modalIncludes"></ul>
+<div class="price" id="modalPrice"></div>
+<div class="quantity-box">
+<strong>Quantity:</strong>
+<button onclick="changeModalQuantity(-1)">−</button>
+<span class="quantity-number" id="modalQuantity">1</span>
+<button onclick="changeModalQuantity(1)">+</button>
+</div>
+<div class="modal-total">Total Base: KSh <span id="modalTotal">0</span></div>
+<button class="btn primary" onclick="addModalProductToCart()">Add to Cart</button>
+</div>
+</div>
+
+<!-- CART MODAL -->
+
+<div class="modal cart-modal" id="cartModal">
+<div class="modal-content">
+<button class="close" onclick="closeCart()">&times;</button>
+<h2>Your Cart 🛒</h2>
+<div id="cartItems"></div>
+<div class="cart-total">Total Base Ref: KSh <span id="cartTotal">0</span></div>
+<div class="negotiative-notice">*All prices shown are baseline references and are fully negotiable upon checkout.</div><br>
+<button class="btn secondary" onclick="closeCart()">Continue Shopping</button>
+<button class="btn primary" onclick="checkout()">Proceed to Checkout (WhatsApp)</button>
+</div>
+</div>
+
+<!-- FOOTER -->
+
+<footer>
+<div class="container">
+<p>© 2026 SkillVault. Knowledge. Tools. Professional Solutions.</p>
+</div>
+</footer>
+
+<script>
+let currentProduct = null;
+let modalQuantity = 1;
+
+function filterProducts(category, button){
+    const products = document.querySelectorAll(".product-card");
+    const buttons = document.querySelectorAll(".filter-btn");
+
+    buttons.forEach(btn => btn.classList.remove("active"));
+    if(button) button.classList.add("active");
+
+    products.equal = Array.from(products).forEach(product => {
+        const productCategory = product.getAttribute("data-category");
+        if(category === "all" || productCategory === category){
+            product.classList.remove("hidden");
+        } else {
+            product.classList.add("hidden");
+        }
+    });
+
+    document.getElementById("products").scrollIntoView({ behavior:"smooth" });
+    document.getElementById("productsDropdown").classList.remove("show");
+}
+
+function toggleProductsMenu(){
+    document.getElementById("productsDropdown").classList.toggle("show");
+}
+
+function toggleMobileMenu(){
+    const nav = document.getElementById("navLinks");
+    nav.style.display = (nav.style.display === "flex") ? "none" : "flex";
+    if(nav.style.display === "flex"){
+        nav.style.flexDirection = "column";
+        nav.style.width = "100%";
+        nav.style.padding = "15px 0";
+    }
+}
+
+let cart = [];
+
+function addToCart(name, price, qty = 1){
+    const existing = cart.find(item => item.name === name);
+    if(existing){
+        existing.quantity += qty;
+    } else {
+        cart.push({ name: name, price: price, quantity: qty });
+    }
+    updateCart();
+    alert(name + " has been added to your cart. (Prices are negotiable upon checkout)");
+}
+
+function updateCart(){
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    document.getElementById("cartCount").innerText = count;
+
+    const cartItemsContainer = document.getElementById("cartItems");
+    const cartTotalContainer = document.getElementById("cartTotal");
+
+    if(cart.length === 0){
+        cartItemsContainer.innerHTML = '<div class="empty-cart">Your cart is empty.</div>';
+        cartTotalContainer.innerText = "0";
+        return;
+    }
+
+    let html = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        html += `
+            <div class="cart-item">
+                <div class="cart-item-info">
+                    <strong>${item.name}</strong>
+                    <small>Base: KSh ${item.price.toLocaleString()} x ${item.quantity}</small>
+                </div>
+                <div class="cart-item-controls">
+                    <button onclick="changeQuantity(${index}, -1)">-</button>
+                    <span>${item.quantity}</span>
+                    <button onclick="changeQuantity(${index}, 1)">+</button>
+                    <button onclick="removeFromCart(${index})" style="background:#ffcccc; border:none; border-radius:4px; cursor:pointer; width:30px; height:30px;">×</button>
+                </div>
+            </div>
+        `;
+    });
+
+    cartItemsContainer.innerHTML = html;
+    cartTotalContainer.innerText = total.toLocaleString();
+}
+
+function changeQuantity(index, change){
+    cart[index].quantity += change;
+    if(cart[index].quantity <= 0){
+        cart.splice(index, 1);
+    }
+    updateCart();
+}
+
+function removeFromCart(index){
+    cart.splice(index, 1);
+    updateCart();
+}
+
+function openCart(){
+    document.getElementById("cartModal").classList.add("show");
+    updateCart();
+}
+
+function closeCart(){
+    document.getElementById("cartModal").classList.remove("show");
+}
+
+function openProduct(name, category, price, description, includes){
+    currentProduct = { name, price, description, includes };
+    modalQuantity = 1;
+
+    document.getElementById("modalProductName").innerText = name;
+    document.getElementById("modalDescription").innerText = description;
+    document.getElementById("modalQuantity").innerText = modalQuantity;
+    
+    const includesList = includes.split(", ");
+    let listHtml = "";
+    includesList.forEach(item => { listHtml += `<li>${item}</li>`; });
+    document.getElementById("modalIncludes").innerHTML = listHtml;
+
+    document.getElementById("modalPrice").innerText = "Price Negotiable (Base Ref: KSh " + price.toLocaleString() + ")";
+    document.getElementById("modalTotal").innerText = (price * modalQuantity).toLocaleString();
+
+    document.getElementById("productModal").classList.add("show");
+}
+
+function closeProduct(){
+    document.getElementById("productModal").classList.remove("show");
+}
+
+function changeModalQuantity(change){
+    modalQuantity += change;
+    if(modalQuantity < 1) modalQuantity = 1;
+    document.getElementById("modalQuantity").innerText = modalQuantity;
+    document.getElementById("modalTotal").innerText = (currentProduct.price * modalQuantity).toLocaleString();
+}
+
+function addModalProductToCart(){
+    if(!currentProduct) return;
+    addToCart(currentProduct.name, currentProduct.price, modalQuantity);
+    closeProduct();
+}
+
+function checkout(){
+    if(cart.length === 0){
+        alert("Your cart is empty.");
+        return;
+    }
+    let message = "Hello SkillVault, I would like to checkout the following items (Prices Negotiable):%0A";
+    let total = 0;
+    cart.forEach(item => {
+        let subtotal = item.price * item.quantity;
+        total += subtotal;
+        message += `- ${item.name} (Qty: ${item.quantity}) - Base Ref: KSh ${subtotal.toLocaleString()}%0A`;
+    });
+    message += `%0ATotal Base Ref: KSh ${total.toLocaleString()}%0A(Looking forward to discussing the final negotiable price!)`;
+    window.open(`https://wa.me/254112588425?text=${message}`, "_blank");
+}
+
+function submitProductRequest(event){
+    event.preventDefault();
+    const name = document.getElementById("requestName").value;
+    const email = document.getElementById("requestEmail",).value;
+    const phone = document.getElementById("requestPhone").value;
+    const category = document.getElementById("requestCategory").value;
+    const product = document.getElementById("requestedProduct").value;
+    const format = document.getElementById("format").value;
+    const budget = document.getElementById("budget").value;
+    const details = document.getElementById("requestDetails").value;
+
+    let msg = `Hello SkillVault, I would like to request a custom product:%0A` +
+              `*Name:* ${name}%0A*Email:* ${email}%0A*Phone:* ${phone}%0A` +
+              `*Category:* ${category}%0A*Product:* ${product}%0A` +
+              `*Format:* ${format}%0A*Budget:* ${budget}%0A*Details:* ${details}`;
+
+    window.open(`https://wa.me/254112588425?text=${msg}`, "_blank");
+}
+</script>
+
+</body>
+</html>
